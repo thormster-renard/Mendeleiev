@@ -5,7 +5,7 @@
 ** Login   <thormster@localhost>
 ** 
 ** Started on  Tue Jan 21 11:30:18 2020 thormster
-** Last update Wed Jan 22 14:18:07 2020 thormster
+** Last update Wed Jan 22 14:40:36 2020 thormster
 */
 
 #include	"header.h"
@@ -110,6 +110,8 @@ int		search_element(char **table, char *element)
   {
     if ((strncmp(table[i], element, len)) == 0)
       y = display_line(table, i);
+    if (y != 0)
+      break;
     i += 1;
   }
   xputchar('\n');
