@@ -17,3 +17,7 @@
 
 		<user>@<localhost>
 		001	Hydrogène	H	[1.007975]
+
+
+INSTALL
+		make all
