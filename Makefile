@@ -1,5 +1,4 @@
-#CFLAGS= -W -Wall -ansi -pedantic -Wextra -Werror
-CFLAGS=	-g3
+CFLAGS= -W -Wall -ansi -pedantic -Wextra -Werror
 
 NAME=	mendeltab
 
