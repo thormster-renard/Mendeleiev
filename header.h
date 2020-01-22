@@ -5,7 +5,7 @@
 ** Login   <thormster@localhost>
 ** 
 ** Started on  Tue Jan 21 11:29:59 2020 thormster
-** Last update Tue Jan 21 22:00:27 2020 thormster
+** Last update Wed Jan 22 14:29:50 2020 thormster
 */
 
 #ifndef		__HEADER_H__
@@ -16,7 +16,7 @@
 #include	<string.h>
 #include	<unistd.h>
 
-#define		BLOCKSIZE	1744
+#define		BLOCKSIZE	2825
 #define		ERR		-1
 
 void		xputchar(char);

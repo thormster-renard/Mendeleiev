@@ -5,7 +5,7 @@
 ** Login   <thormster@localhost>
 ** 
 ** Started on  Tue Jan 21 11:30:18 2020 thormster
-** Last update Tue Jan 21 22:00:03 2020 thormster
+** Last update Wed Jan 22 14:18:07 2020 thormster
 */
 
 #include	"header.h"
@@ -19,7 +19,7 @@ int		display_line(char **table, int i)
   wit = 0;
   if (table[pos][0] >= '0' && table[pos][0] <= '9')
   {
-    while (wit != 3)
+    while (wit != 4)
     {
       display_table_function(table, pos);
       pos += 1;
@@ -28,7 +28,7 @@ int		display_line(char **table, int i)
   }
   else if (table[pos - 1][0] >= '0' && table[pos - 1][0] <= '9')
   {
-    while (wit != 3)
+    while (wit != 4)
     {
       display_table_function(table, pos - 1);
       pos += 1;
@@ -37,9 +37,18 @@ int		display_line(char **table, int i)
   }
   else if (table[pos - 2][0] >= '0' && table[pos - 2][0] <= '9')
   {
-    while (wit != 3)
+    while (wit != 4)
     {
       display_table_function(table, pos - 2);
+      pos += 1;
+      wit += 1;
+    }
+  }
+  else if (table[pos - 3][0] >= '0' && table[pos - 3][0] <= '9')
+  {
+    while (wit != 4)
+    {
+      display_table_function(table, pos - 3);
       pos += 1;
       wit += 1;
     }
@@ -49,12 +58,12 @@ int		display_line(char **table, int i)
 
 void		display_table_function(char **table, int i)
 {
-  if ((table[i][0] >= '1' && table[i][0] <= '9') && xstrlen(table[i]) == 1)
+  if (((table[i][0] >= '1' && table[i][0] <= '9') && xstrlen(table[i]) == 1) && table[i][0] != '[')
     xputstr("00");
-  if ((table[i][0] >= '0' && table[i][0] <= '9') && xstrlen(table[i]) == 2)
+  if (((table[i][0] >= '0' && table[i][0] <= '9') && xstrlen(table[i]) == 2) && table[i][0] != '[')
     xputchar('0');
   xputstr(table[i]);
-  if ((table[i][0] > '9') && (xstrlen(table[i]) < 8))
+  if ((table[i][0] > '9') && (xstrlen(table[i]) < 8) && table[i][0] != '[')
     xputstr("\t\t");
   else
     xputchar('\t');
@@ -68,7 +77,7 @@ int		full_table(char **table)
   while (table[i] != NULL)
   {
     display_table_function(table, i);
-    if (((i + 1) % 3 == 0) && (i != 0))
+    if (((i + 1) % 4 == 0) && (i != 0))
       xputchar('\n');
     i += 1;
   }
