@@ -5,97 +5,10 @@
 ** Login   <thormster@localhost>
 ** 
 ** Started on  Tue Jan 21 11:30:18 2020 thormster
-** Last update Wed Jan 22 14:40:36 2020 thormster
+** Last update Fri Jan 24 16:01:13 2020 thormster
 */
 
 #include	"header.h"
-
-int		display_line(char **table, int i)
-{
-  int		wit;
-  int		pos;
-
-  pos = i;
-  wit = 0;
-  if (table[pos][0] >= '0' && table[pos][0] <= '9')
-  {
-    while (wit != 4)
-    {
-      display_table_function(table, pos);
-      pos += 1;
-      wit += 1;
-    }
-  }
-  else if (table[pos - 1][0] >= '0' && table[pos - 1][0] <= '9')
-  {
-    while (wit != 4)
-    {
-      display_table_function(table, pos - 1);
-      pos += 1;
-      wit += 1;
-    }
-  }
-  else if (table[pos - 2][0] >= '0' && table[pos - 2][0] <= '9')
-  {
-    while (wit != 4)
-    {
-      display_table_function(table, pos - 2);
-      pos += 1;
-      wit += 1;
-    }
-  }
-  else if (table[pos - 3][0] >= '0' && table[pos - 3][0] <= '9')
-  {
-    while (wit != 4)
-    {
-      display_table_function(table, pos - 3);
-      pos += 1;
-      wit += 1;
-    }
-  }
-  return (wit);
-}
-
-void		display_table_function(char **table, int i)
-{
-  if (((table[i][0] >= '1' && table[i][0] <= '9') && xstrlen(table[i]) == 1) && table[i][0] != '[')
-    xputstr("00");
-  if (((table[i][0] >= '0' && table[i][0] <= '9') && xstrlen(table[i]) == 2) && table[i][0] != '[')
-    xputchar('0');
-  xputstr(table[i]);
-  if ((table[i][0] > '9') && (xstrlen(table[i]) < 8) && table[i][0] != '[')
-    xputstr("\t\t");
-  else
-    xputchar('\t');
-}
-
-int		full_table(char **table)
-{
-  int		i;
-
-  i = 0;
-  while (table[i] != NULL)
-  {
-    display_table_function(table, i);
-    if (((i + 1) % 4 == 0) && (i != 0))
-      xputchar('\n');
-    i += 1;
-  }
-  return (0);
-}
-
-void		free_table(char **tb)
-{
-  int		i;
-
-  i = 0;
-  while (tb[i] != NULL)
-  {
-    free(tb[i]);
-    i += 1;
-  }
-  free(tb);
-}
 
 int		search_element(char **table, char *element)
 {
@@ -116,7 +29,7 @@ int		search_element(char **table, char *element)
   }
   xputchar('\n');
   if (y == 0)
-    return (ERR);
+    return (XERROR);
   return (0);
 }
 
@@ -126,17 +39,17 @@ int		main(int ac, char **av)
   char		*tmp;
 
   if ((tmp = init_file()) == NULL)
-    return (ERR);
+    return (XERROR);
   if ((table = my_str_to_wordtab(tmp, ',')) == NULL)
-    return (ERR);
+    return (XERROR);
   if (ac == 1)
   {
-    if ((full_table(table)) == ERR)
-      return (ERR);
+    if ((display_full_table(table)) == XERROR)
+      return (XERROR);
   }
   else if (ac == 2)
   {
-    if ((search_element(table, av[1])) == ERR)
+    if ((search_element(table, av[1])) == XERROR)
       xputstr("L'élement n'existe pas ou a été mal orthographié\n");
   }
   free(tmp);
