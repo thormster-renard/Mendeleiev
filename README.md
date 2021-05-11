@@ -1,14 +1,15 @@
 # Tableau périodique des éléments
 
-./mendeltab
+MENDELTAB
 
+DESCRIPTION
 
 		Affiche le tableau dans son entier (Numéro atomique, nom de l'élément, Symbole de l'élément, Masse atomique de l'élément)
 
 
 
 
-./mendeltab <PARAMETRE>
+PARAMETRE
 
 
 		Affiche la ligne correspondant à PARAMETRE
@@ -20,4 +21,5 @@
 
 
 INSTALL
+		
 		make all
